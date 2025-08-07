@@ -1,0 +1,78 @@
+[
+  {
+    "name": "rule:edit-access",
+    "conditions": {
+      "all": [
+        {
+          "fact": "userId",
+          "operator": "equal",
+          "value": {
+            "fact": "postOwnerId"
+          }
+        },
+        {
+          "any": [
+            {
+              "fact": "action",
+              "operator": "equal",
+              "value": "edit"
+            },
+            {
+              "fact": "action",
+              "operator": "equal",
+              "value": "read"
+            }
+          ]
+        },
+        {
+          "fact": "resource",
+          "operator": "equal",
+          "value": "post"
+        },
+        {
+          "any": [
+            {
+              "fact": "role",
+              "operator": "equal",
+              "value": "editor"
+            },
+            {
+              "fact": "role",
+              "operator": "equal",
+              "value": "user"
+            },
+            {
+              "fact": "role",
+              "operator": "startsWith",
+              "value": "Quy"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "type": "access-granted",
+      "params": {
+        "message": "Editor được sửa bài viết của mình"
+      }
+    }
+  },
+  {
+    "name": "rule:admin-access",
+    "conditions": {
+      "all": [
+        {
+          "fact": "role",
+          "operator": "equal",
+          "value": "admin"
+        }
+      ]
+    },
+    "event": {
+      "type": "access-granted",
+      "params": {
+        "message": "Admin được toàn quyền"
+      }
+    }
+  }
+]
