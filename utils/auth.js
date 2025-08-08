@@ -14,6 +14,7 @@ async function canAccess(req, res, next) {
     role: req.body.role,
     action: req.method === "PUT" ? "edit" : "read",
     resource: "post",
+    age: req.body.age,
   };
   console.log("🔍 Checking permissions with facts:", facts);
   const allowed = await checkPermission(facts);

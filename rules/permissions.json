@@ -47,6 +47,11 @@
               "value": "Quy"
             }
           ]
+        },
+        {
+          "fact": "birthYear",
+          "operator": "greaterThanInclusive",
+          "value": "10"
         }
       ]
     },

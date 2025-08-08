@@ -10,6 +10,12 @@ function createPermissionEngine() {
     if (typeof factValue !== "string") return false;
     return factValue.startsWith(jsonValue);
   });
+  engine.addFact("birthYear", async (params, almanac) => {
+    const age = await almanac.factValue("age");
+    const currentYear = new Date().getFullYear();
+    return currentYear - age;
+  });
+
   rules.forEach((rule) => engine.addRule(rule));
   return engine;
 }
